@@ -209,10 +209,5 @@ __marimo__/
 # Project-specific ignores
 # ==========================================
 
-# Health Data Analyzer - Results directory
-PROJECTS/01-health-data-analyzer/results/*.png
-PROJECTS/01-health-data-analyzer/results/*.jpg
-PROJECTS/01-health-data-analyzer/results/*.csv
-
 # Keep directory structure  
 !**/.gitkeep
