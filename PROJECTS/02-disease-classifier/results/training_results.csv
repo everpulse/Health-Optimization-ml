@@ -1,0 +1,5 @@
+Model,Training_Accuracy,Training_Time,Saved_File
+Logistic Regression,79.32%,0.132s,logistic_regression.pkl
+Decision Tree,81.43%,0.014s,decision_tree.pkl
+Random Forest,84.85%,0.301s,random_forest.pkl
+K-Nearest Neighbors,80.13%,0.010s,knn.pkl
