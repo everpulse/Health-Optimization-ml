@@ -1,93 +1,201 @@
-# 🤖 Project 2: Disease Classifier
+# 🤖 Disease Classifier
 
-## 🎯 Goal
-Learn machine learning basics by building classification models to predict diabetes.
+Machine learning classification models for diabetes prediction using preprocessed clinical data.
+
+## 🎯 Project Overview
+
+This project implements multiple machine learning classification algorithms to predict diabetes outcomes based on clinical biomarkers. The project uses the cleaned dataset from the Health Data Analyzer and trains four different models for comparison.
+
+**Objectives:**
+- ✅ Split data into training and testing sets
+- ✅ Train multiple classification models
+- ✅ Compare model performance
+- ✅ Save trained models for deployment
 
 ## 📊 Dataset
-Using the cleaned diabetes dataset from Project 1 (768 patients, 8 features)
 
-## 🛠️ Task Checklist
+**Source:** Preprocessed data from `01-health-data-analyzer`
+- **Training samples:** 614 (80%)
+- **Testing samples:** 154 (20%)
+- **Features:** 8 clinical measurements
+- **Target:** Binary diabetes outcome (0=negative, 1=positive)
+- **Class distribution:** ~65% healthy, ~35% diabetes (stratified split)
 
-### Phase 1: Data Preparation ✅
-- [x] Copy cleaned dataset
-- [x] Split data into train/test sets (80/20)
-- [x] Understand train/test concept
+### Input Features
 
-### Phase 2: Model Training ✅
-- [x] Logistic Regression (79.32% accuracy)
-- [x] Decision Tree (81.16% accuracy)
-- [x] Random Forest (84.85% accuracy)
-- [x] K-Nearest Neighbors (80.13% accuracy)
+| Feature | Description | Unit |
+|---------|-------------|------|
+| Pregnancies | Number of pregnancies | count |
+| Glucose | Plasma glucose concentration | mg/dL |
+| BloodPressure | Diastolic blood pressure | mm Hg |
+| SkinThickness | Triceps skin fold thickness | mm |
+| Insulin | 2-Hour serum insulin | mu U/ml |
+| BMI | Body mass index | kg/m² |
+| DiabetesPedigreeFunction | Diabetes heredity score | score |
+| Age | Age | years |
 
-### Phase 3: Evaluation 🔄
-- [ ] Calculate accuracy, precision, recall
-- [ ] Create confusion matrices
-- [ ] Compare models
-- [ ] Visualize results
+## 📁 Project Structure
 
-### Phase 4: Prediction
-- [ ] Make predictions on test data
-- [ ] Save best model
-- [ ] Test on new samples
-
-## 🏃 How to Run
-```bash
-# Step 1: Split data
-python src/01-split_data.py
-
-# Step 2: Train models ✅
-python src/02-train_models.py
-
-# Step 3: Evaluate models (next)
-python src/03-evaluate_models.py
-
-# Step 4: Make predictions (coming soon)
-python src/04-predict_new.py
-```
-
-## 📚 What I'm Learning
-- scikit-learn basics ✅
-- Train/test split concept ✅
-- Classification algorithms ✅
-- Model evaluation metrics (next)
-- Making predictions
-
-## 🔧 Common Issues
-- **ImportError**: Run `pip install -r requirements.txt`
-- **FileNotFoundError**: Make sure cleaned data exists in data/
-- **Low accuracy**: Normal for first try! We'll improve it.
-
-## 📈 Progress
-- **Started:** 2025-11-24
-- **Phase 1 Complete:** 2025-11-27 (~4 hours)
-- **Phase 2 Complete:** 2025-11-29 (~4 hours)
-- **Status:** ✅ Phase 2 - Model Training COMPLETE!
-- **Best Model So Far:** Random Forest (84.85%)
-
-## 📂 Project Structure
 ```
 02-disease-classifier/
+├── README.md
+├── requirements.txt
 ├── data/
-│   ├── diabetes_cleaned.csv
-│   ├── train_data.csv          ✅
-│   └── test_data.csv           ✅
+│   ├── diabetes_cleaned.csv    # Preprocessed dataset (from project 01)
+│   ├── train_data.csv          # Training set (614 samples)
+│   └── test_data.csv           # Testing set (154 samples)
 ├── src/
-│   ├── 01-split_data.py        ✅
-│   ├── 02-train_models.py      ✅
-│   ├── 03-evaluate_models.py   (next)
-│   └── 04-predict_new.py
-├── models/                     ✅ (4 trained models)
-│   ├── logistic_regression.pkl
-│   ├── decision_tree.pkl
-│   ├── random_forest.pkl
-│   └── knn.pkl
-├── results/                    ✅
-│   └── training_results.csv
-└── README.md
+│   ├── 01-split_data.py        # Train/test split
+│   └── 02-train_models.py      # Model training
+├── models/
+│   ├── logistic_regression.pkl  # Trained LR model
+│   ├── decision_tree.pkl        # Trained DT model
+│   ├── random_forest.pkl        # Trained RF model
+│   └── knn.pkl                  # Trained KNN model
+├── results/
+│   └── training_results.csv     # Training metrics summary
+└── notebooks/
+    └── evaluation.ipynb         # Model evaluation (planned)
 ```
+
+## 🚀 Setup & Usage
+
+### Prerequisites
+```bash
+Python 3.8+
+pip or conda
+```
+
+### Installation
+```bash
+# Navigate to project directory
+cd PROJECTS/02-disease-classifier
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Running the Pipeline
+
+#### 1️⃣ Split Data into Train/Test Sets
+```bash
+python src/01-split_data.py
+```
+**Output:** 
+- `data/train_data.csv` (614 samples)
+- `data/test_data.csv` (154 samples)
+
+**Details:**
+- 80/20 train-test split
+- Stratified sampling (maintains class distribution)
+- Random state = 42 (reproducible)
 
 ---
 
-**Total time invested:** ~8 hours (Phase 1: 4h, Phase 2: 4h)  
-**Next milestone:** Evaluate models on test data (Phase 3)  
-**Key achievement:** Successfully trained 4 ML algorithms! 🎉
+#### 2️⃣ Train All Models
+```bash
+python src/02-train_models.py
+```
+**Output:**
+- 4 trained models saved in `models/`
+- Training metrics in `results/training_results.csv`
+
+**Models Trained:**
+1. **Logistic Regression** - Fast, interpretable baseline
+2. **Decision Tree** - Rule-based, easy to visualize
+3. **Random Forest** - Ensemble method, high accuracy
+4. **K-Nearest Neighbors** - Instance-based learning
+
+---
+
+## 🤖 Models & Results
+
+### Training Performance
+
+| Model | Training Accuracy | Training Time |
+|-------|------------------|---------------|
+| Logistic Regression | 77.69% | ~0.01s |
+| Decision Tree | 84.69% | ~0.01s |
+| Random Forest | 81.92% | ~0.15s |
+| K-Nearest Neighbors | 82.74% | ~0.00s |
+
+> **Note:** These are training accuracies. Test performance evaluation is planned.
+
+---
+
+## 📈 Model Details
+
+### 1. Logistic Regression
+**Type:** Linear classifier  
+**Pros:** Fast, interpretable, good baseline  
+**Cons:** Assumes linear relationships  
+**Hyperparameters:** `max_iter=1000`, `random_state=42`
+
+---
+
+### 2. Decision Tree
+**Type:** Tree-based classifier  
+**Pros:** Easy to interpret, handles non-linear data  
+**Cons:** Can overfit without pruning  
+**Hyperparameters:** `max_depth=5`, `random_state=42`
+
+---
+
+### 3. Random Forest
+**Type:** Ensemble (multiple trees)  
+**Pros:** High accuracy, robust  
+**Cons:** Slower training, less interpretable  
+**Hyperparameters:** `n_estimators=100`, `max_depth=5`, `random_state=42`
+
+---
+
+### 4. K-Nearest Neighbors
+**Type:** Instance-based  
+**Pros:** Simple concept, no training  
+**Cons:** Slow prediction, sensitive to scale  
+**Hyperparameters:** `n_neighbors=5`
+
+---
+
+## 🛠️ Technologies
+
+- **Language:** Python 3.8+
+- **Data Processing:** Pandas, NumPy
+- **Machine Learning:** Scikit-learn
+- **Model Persistence:** Joblib
+
+## 📝 Next Steps
+
+### Immediate Tasks
+- [ ] Evaluate models on test set
+- [ ] Generate confusion matrices
+- [ ] Calculate precision, recall, F1-score
+- [ ] Compare model performance
+
+### Future Enhancements
+- [ ] Cross-validation for robust evaluation
+- [ ] Hyperparameter tuning (GridSearchCV)
+- [ ] Feature importance analysis
+- [ ] ROC curves and AUC scores
+- [ ] Model explainability (SHAP values)
+- [ ] Jupyter notebook with visualizations
+- [ ] Model deployment pipeline
+
+## 🔗 Related Projects
+
+**Previous:** [01-health-data-analyzer](../01-health-data-analyzer/) - Data cleaning and EDA  
+**Next:** Model evaluation and deployment (planned)
+
+## 🤝 Contributing
+
+This is a portfolio project demonstrating machine learning workflow.
+
+## 📄 License
+
+This project is open source and available for educational purposes.
+
+---
+
+**Status:** ✅ Complete - Models Trained  
+**Last Updated:** January 2025  
+**Next Milestone:** Test Set Evaluation
